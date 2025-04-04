@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "id": "1743417824736",
+      "email": "Aditya@gmail.com",
+      "password": "Aditya12"
+    },
+    {
+      "id": "1743698470542",
+      "email": "ashish@gmail.com",
+      "password": "Ashish12"
+    }
+  ],
+  "files": [
+    {
+      "id": "9d44",
+      "filename": "1",
+      "language": "cpp",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    },
+    {
+      "id": "9067",
+      "filename": "2",
+      "language": "cpp",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    },
+    {
+      "id": "576d",
+      "filename": "1",
+      "language": "python",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    },
+    {
+      "id": "eef3",
+      "filename": "2",
+      "language": "python",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    },
+    {
+      "id": "1fd5",
+      "filename": "3",
+      "language": "cpp",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    },
+    {
+      "id": "1ea3",
+      "filename": "1",
+      "language": "javascript",
+      "userId": 1743417824736,
+      "code": "// Your code here"
+    }
+  ]
+}
