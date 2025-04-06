@@ -25,15 +25,15 @@ export default function LoginPage() {
       setError("Incorrect password!");
       return;
     }
-
     alert("Login successful!");
+    localStorage.setItem("userId", user.id);
     router.push("/user"); // Redirecting to /user on success
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-black text-white">
       <div className="w-full max-w-md space-y-6 p-8 rounded-xl bg-gray-900 shadow-lg">
-        <h2 className="text-2xl font-bold text-center">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-center">Welcome Back to CODEKRO</h2>
 
         <form className="space-y-4" onSubmit={handleLogin}>
           <div>

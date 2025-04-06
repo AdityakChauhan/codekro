@@ -4,13 +4,11 @@ import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [error, setError] = useState("");
-
   const router = useRouter();
-  
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
 
     const email = (e.target as any).email.value;
     const password = (e.target as any).password.value;
@@ -28,6 +26,7 @@ export default function SignupPage() {
       return;
     }
 
+    localStorage.setItem("userId", data.id); // ✅ Store user ID
     alert("Signup successful!");
     router.push("/user");
   };

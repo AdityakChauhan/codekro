@@ -9,6 +9,11 @@
       "id": "1743698470542",
       "email": "ashish@gmail.com",
       "password": "Ashish12"
+    },
+    {
+      "id": 1743939060496,
+      "email": "satya@gmail.com",
+      "password": "satya12"
     }
   ],
   "files": [
@@ -17,42 +22,48 @@
       "filename": "1",
       "language": "cpp",
       "userId": 1743417824736,
-      "code": "// Your code here"
+      "code": "\n#include <iostream>\nusing namespace std;\n\nint main() {\n    // Prints \"hi\" to the console followed by a newline character.\n    cout << \"hi\" << endl; // Added endl for a newline after \"hi\".  Missing semicolon fixed.\n    return 0; // Added return 0 to indicate successful program execution.\n}"
     },
     {
-      "id": "9067",
-      "filename": "2",
-      "language": "cpp",
-      "userId": 1743417824736,
-      "code": "// Your code here"
-    },
-    {
-      "id": "576d",
-      "filename": "1",
-      "language": "python",
-      "userId": 1743417824736,
-      "code": "// Your code here"
-    },
-    {
-      "id": "eef3",
-      "filename": "2",
-      "language": "python",
-      "userId": 1743417824736,
-      "code": "// Your code here"
-    },
-    {
-      "id": "1fd5",
-      "filename": "3",
-      "language": "cpp",
-      "userId": 1743417824736,
-      "code": "// Your code here"
-    },
-    {
-      "id": "1ea3",
+      "id": "ffc8",
       "filename": "1",
       "language": "javascript",
       "userId": 1743417824736,
-      "code": "// Your code here"
+      "code": "\n// This is a basic JavaScript code snippet. Here are some improvements and additions you can consider.\n\n// 1. Adding a variable and using it\nlet greeting = \"Hello, world!\"; // Declare a variable named 'greeting' and assign it a string value\n\nconsole.log(greeting); // Output the value of the 'greeting' variable to the console\n\n// 2. Creating a function\nfunction greet(name) {\n  // A function that takes a 'name' as input and returns a greeting string.\n  return \"Hello, \" + name + \"!\";\n}\n\nlet personName = \"Alice\"; // Example: Name of person\nlet personalizedGreeting = greet(personName); // Calls the greet function\n\nconsole.log(personalizedGreeting); // Outputs \"Hello, Alice!\" to the console.\n\n// 3.  Using conditional statements (if/else)\nlet age = 20;\n\nif (age >= 18) {\n  // Check if the 'age' is greater than or equal to 18\n  console.log(\"You are an adult.\"); // If true, output this message.\n} else {\n  console.log(\"You are a minor.\"); // If false, output this message.\n}\n\n// 4. Using Loops (for loop)\n\n// Example:  Print numbers from 1 to 5\n\nfor (let i = 1; i <= 5; i++) {\n  // Initialize i to 1; loop continues as long as i is less than or equal to 5; increment i by 1 in each iteration\n  console.log(i); // Output the value of i in each iteration\n}\n\n// 5. Working with Arrays\n\nlet numbers = [1, 2, 3, 4, 5]; // Create an array of numbers\n\n// Print each number in the array using a for...of loop\nfor (let number of numbers) {\n  console.log(number);\n}\n\n// Calculate the sum of the numbers in the array\nlet sum = 0;\nfor (let number of numbers) {\n  sum += number; // Add each number to the 'sum' variable\n}\n\nconsole.log(\"Sum of numbers:\", sum); // Output the sum of the numbers\n\n// 6. Using Objects\nlet person = {\n  firstName: \"Bob\",\n  lastName: \"Smith\",\n  age: 30,\n  greet: function() {\n    return \"Hello, my name is \" + this.firstName + \" \" + this.lastName + \".\"; // 'this' refers to the person object\n  }\n};\n\nconsole.log(person.firstName); // Access and output the 'firstName' property\nconsole.log(person.greet()); // Call and output the result of the 'greet' method\n\n// 7. Arrow Functions (ES6 feature)\n\n// A shorter way to define functions\nconst add = (a, b) => a + b; // A function that takes two arguments (a and b) and returns their sum\n\nconsole.log(\"5 + 3 =\", add(5, 3)); // Output the result of the add function\n\n// 8. Template Literals (ES6 feature)\n\nlet city = \"New York\";\n\n// Using template literals to create a string\nlet message = `I live in ${city}.`; // Backticks are used to define template literals\n\nconsole.log(message); // Output: \"I live in New York.\"\n\n//9. Event Listeners (browser environment)\n\n// In a browser environment, you can add event listeners to HTML elements.  This example is not executable without HTML.\n\n/*\n// Get a reference to an HTML button element (example)\nconst button = document.getElementById(\"myButton\");\n\n// Add an event listener to the button that listens for a click event\nbutton.addEventListener(\"click\", function() {\n    alert(\"Button clicked!\"); // Display an alert when the button is clicked\n});\n*/\n\n// 10. Error Handling\ntry {\n    // Code that might throw an error\n    let result = 10 / 0; // This will cause a division by zero error\n    console.log(\"Result:\", result); // This line won't be executed if an error occurs\n} catch (error) {\n    // Code to handle the error\n    console.error(\"An error occurred:\", error.message); // Output an error message to the console\n} finally {\n    // Code that will always be executed, regardless of whether an error occurred or not\n    console.log(\"Finally block executed.\");\n}"
+    },
+    {
+      "id": "be4f",
+      "filename": "1",
+      "language": "python",
+      "userId": 1743417824736
+    },
+    {
+      "id": "379d",
+      "filename": "1",
+      "language": "python",
+      "userId": "1743698470542",
+      "code": "print(\"hiii\")"
+    },
+    {
+      "id": "b65e",
+      "filename": "3",
+      "language": "python",
+      "userId": "1743698470542",
+      "code": "\n# This program currently only prints \"hii\" to the console.\nprint(\"hii\")\n\n# Here are some suggestions for improvement or completion, depending on what you want the program to do:\n\n# 1. Add a user input:\n# name = input(\"What is your name? \")\n# print(\"Hello, \" + name + \"!\")\n\n# 2. Perform a calculation:\n# num1 = 5\n# num2 = 10\n# sum = num1 + num2\n# print(\"The sum of\", num1, \"and\", num2, \"is\", sum)\n\n# 3. Create a function:\n# def greet(name):\n#     \"\"\"Greets the person passed in as a parameter.\"\"\"\n#     print(\"Hello, \" + name + \"!\")\n\n# greet(\"Alice\")\n\n# 4. Use a conditional statement:\n# age = 18\n# if age >= 18:\n#     print(\"You are an adult.\")\n# else:\n#     print(\"You are not an adult.\")\n\n# 5. Demonstrate use of a list\n# my_list = [1, 2, 3, 4, 5]\n# print(\"The first element of the list is:\", my_list[0])\n\n# 6. Add error handling\n# try:\n#   number = int(input(\"Enter a number: \"))\n#   print(\"You entered:\", number)\n# except ValueError:\n#   print(\"Invalid input. Please enter a number.\")\n\n\n# The best improvement depends on the desired functionality.\n#  Choose one or combine several of the above suggestions to create a more complete program."
+    },
+    {
+      "id": "ba9a",
+      "filename": "new",
+      "language": "javascript",
+      "userId": "1743698470542",
+      "code": "\n// This line logs the string \"helo\" to the console.\nconsole.log(\"helo\");\n\n// Suggestion for improvement:  The string \"helo\" is likely a typo and should be \"hello\".\n\n// Corrected code:\nconsole.log(\"hello\");\n\n//Further improvements (depending on the context/purpose):\n\n// 1.  Adding a descriptive variable:\n// If the code is part of a larger program where you need to use the \"hello\" message multiple times:\nconst greeting = \"hello\";\nconsole.log(greeting);\n\n// 2.  Creating a function:\n// If the code is part of a module or component and needs to be reusable:\nfunction greet() {\n  console.log(\"hello\");\n}\n\ngreet(); // Call the function to execute the console log\n\n//3. Using Template literals if more complex string manipulation is needed\nconst name = \"World\";\nconsole.log(`hello ${name}`);\n\n// Choosing the best improvement depends entirely on the specific requirements and context of the code within a larger project. The most basic and likely improvement is correcting the typo.\n"
+    },
+    {
+      "id": "72a4",
+      "filename": "1",
+      "language": "python",
+      "userId": "undefined",
+      "code": "print(\"hii\")"
     }
   ]
 }
