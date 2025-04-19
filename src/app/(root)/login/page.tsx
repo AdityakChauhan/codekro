@@ -10,25 +10,25 @@ export default function LoginPage() {
     e.preventDefault();
     const email = (e.target as any).email.value;
     const password = (e.target as any).password.value;
-
-    const res = await fetch(`http://localhost:3001/users?email=${email}`);
-    const users = await res.json();
-
-    if (users.length === 0) {
-      setError("User not found!");
+  
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+  
+    const data = await res.json();
+  
+    if (!res.ok) {
+      setError(data.error || "Login failed");
       return;
     }
-
-    const user = users[0];
-
-    if (user.password !== password) {
-      setError("Incorrect password!");
-      return;
-    }
+  
     alert("Login successful!");
-    localStorage.setItem("userId", user.id);
-    router.push("/user"); // Redirecting to /user on success
+    localStorage.setItem("userId", data.id);
+    router.push("/user");
   };
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-black text-white">

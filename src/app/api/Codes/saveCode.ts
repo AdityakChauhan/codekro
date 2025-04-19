@@ -20,7 +20,7 @@ const LANGUAGE_CONFIG = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
-      const { filename, language, code } = req.body;
+      const { filename, language, code } = req.body as { filename: string; language: keyof typeof LANGUAGE_CONFIG; code: string };
       
       if (!LANGUAGE_CONFIG[language]) {
         return res.status(400).json({ message: "Unsupported language." });

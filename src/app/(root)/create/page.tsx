@@ -27,22 +27,31 @@ export default function CreateFilePage() {
 
   const handleCreateFile = async () => {
     if (!filename.trim()) return alert("Please enter a filename");
-
-    const newFile = { filename, language, userId };
+    if (!userId) return alert("User not logged in");
 
     try {
-      const res = await fetch("http://localhost:3001/files", {
+      // Check if a file with the same name already exists for the user
+      const checkRes = await fetch(`http://localhost:3001/files?userId=${userId}&filename=${encodeURIComponent(filename)}`);
+      const existingFiles = await checkRes.json();
+
+      if (existingFiles.length > 0) {
+        return alert("A file with this name already exists.");
+      }
+
+      // Proceed to create the file
+      const newFile = { filename, language, userId };
+      const createRes = await fetch("http://localhost:3001/files", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newFile),
       });
 
-      if (!res.ok) throw new Error("Failed to create file");
+      if (!createRes.ok) throw new Error("Failed to create file");
 
       const ext = extensions[languages.indexOf(language)];
       router.push(`/editor?filename=${encodeURIComponent(filename)}&language=${language}&ext=${ext}`);
     } catch (error) {
-      alert("Error creating file: " + error.message);
+      alert("Error creating file: " + (error instanceof Error ? error.message : "Unknown error"));
     }
   };
 

@@ -34,8 +34,21 @@ export default function UserFilesPage() {
   }, []);
 
   const getFileIcon = (language: string) => {
-    const availableIcons = ["cpp", "csharp", "go", "java", "javascript", "python", "ruby", "rust", "swift", "typescript"];
-    return availableIcons.includes(language.toLowerCase()) ? `/${language.toLowerCase()}.png` : "/default.png";
+    const availableIcons = [
+      "cpp",
+      "csharp",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "ruby",
+      "rust",
+      "swift",
+      "typescript",
+    ];
+    return availableIcons.includes(language.toLowerCase())
+      ? `/${language.toLowerCase()}.png`
+      : "/default.png";
   };
 
   const handleDelete = async (id: string) => {
@@ -76,7 +89,9 @@ export default function UserFilesPage() {
       {loading ? (
         <p className="text-gray-400">Loading files...</p>
       ) : files.length === 0 ? (
-        <p className="text-gray-400">No files found. Create a new file to get started.</p>
+        <p className="text-gray-400">
+          No files found. Create a new file to get started.
+        </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
           {files.map((file) => (
@@ -88,7 +103,9 @@ export default function UserFilesPage() {
                 className="flex items-center"
                 onClick={() =>
                   router.push(
-                    `/editor?filename=${encodeURIComponent(file.filename)}&language=${encodeURIComponent(file.language)}`
+                    `/editor?filename=${encodeURIComponent(
+                      file.filename
+                    )}&language=${encodeURIComponent(file.language)}`
                   )
                 }
               >
