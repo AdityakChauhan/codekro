@@ -337,6 +337,7 @@ export default function CodeEditor() {
   const [fileId, setFileId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -390,6 +391,13 @@ export default function CodeEditor() {
     }, 1000);
   }, [code, fileId]);
 
+  // Scroll to bottom of terminal when output changes
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [output]);
+
   const getFileIcon = (lang: string) => {
     const available = [
       "cpp", "csharp", "go", "java", "javascript",
@@ -425,9 +433,9 @@ export default function CodeEditor() {
       const result = await response.json();
       setOutput((prev) => [
         ...prev.slice(0, -1),
-        `> ${input}`,
+        input ? `> Input: ${input}` : "",
         result.run.stdout || result.run.stderr || "No output",
-      ]);
+      ].filter(Boolean));
     } catch (err) {
       setOutput((prev) => [...prev, "Execution error"]);
     } finally {
@@ -520,6 +528,10 @@ export default function CodeEditor() {
     }
   };
 
+  const clearTerminal = () => {
+    setOutput([]);
+  };
+
   return (
     <div className="flex flex-row items-start min-h-screen bg-gray-900 text-white p-8 gap-4">
       <div className="flex flex-col w-2/3">
@@ -566,27 +578,72 @@ export default function CodeEditor() {
             </button>
           </div>
         </div>
-        <Editor
-          height="80vh"
-          theme="vs-dark"
-          language={language}
-          value={code}
-          onChange={(value) => setCode(value || "")}
-        />
+
+        <div className="w-full mt-4 rounded-lg overflow-hidden border-2 border-gray-700 shadow-lg">
+          <Editor
+            height="70vh"
+            language={language}
+            theme="vs-dark"
+            value={code}
+            onChange={(value) => setCode(value ?? "")}
+            options={{
+              fontSize: 16,
+              minimap: { enabled: false },
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+            }}
+          />
+        </div>
       </div>
 
-      <div className="w-1/3 flex flex-col gap-4">
-        <textarea
-          rows={4}
-          placeholder="Enter input (stdin)..."
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <div className="bg-black p-4 rounded-lg h-[60vh] overflow-y-auto font-mono text-sm whitespace-pre-wrap">
-          {output.map((line, i) => (
-            <div key={i}>{line}</div>
-          ))}
+      <div className="w-1/3 bg-gray-850 rounded-lg shadow-lg flex flex-col">
+        <div className="bg-gray-800 p-3 rounded-t-lg flex justify-between items-center border-b border-gray-700">
+          <h2 className="text-lg font-semibold text-gray-200">Terminal</h2>
+          <button 
+            onClick={clearTerminal}
+            className="px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs"
+          >
+            Clear
+          </button>
+        </div>
+        
+        <div 
+          ref={terminalRef}
+          className="flex-grow bg-black p-4 rounded-b-lg overflow-y-auto font-mono text-sm whitespace-pre-wrap h-[55vh]"
+        >
+          {output.length === 0 ? (
+            <div className="text-gray-500 italic">Terminal output will appear here...</div>
+          ) : (
+            output.map((line, i) => (
+              <div key={i} className={`mb-1 ${line.startsWith('>') ? 'text-blue-400' : 'text-green-300'}`}>
+                {line}
+              </div>
+            ))
+          )}
+        </div>
+        
+        <div className="mt-4 bg-gray-800 p-3 rounded-lg border border-gray-700">
+          <div className="flex items-center mb-2">
+            <span className="text-blue-400 mr-2">stdin</span>
+            <span className="text-gray-400 text-xs">Input for your program</span>
+          </div>
+          <div className="flex items-center">
+            <textarea
+              rows={3}
+              placeholder="Enter input for your program here..."
+              className="w-full p-2 bg-gray-900 text-white rounded border border-gray-700 font-mono resize-none focus:outline-none focus:border-blue-500"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.ctrlKey) {
+                  handleRunCode();
+                }
+              }}
+            />
+          </div>
+          <div className="mt-2 text-xs text-gray-400">
+            Press Ctrl+Enter to run or click the Run Code button
+          </div>
         </div>
       </div>
     </div>
